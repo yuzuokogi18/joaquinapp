@@ -1,0 +1,10 @@
+<div class="form-container">
+    <h2>Eliminar Receta</h2>
+    <ul class="recipe-list">
+        <li *ngFor="let recipe of recipes; let i = index" class="recipe-item">
+            <span class="recipe-name">{{ recipe.name }}</span>
+            <button class="delete-button" (click)="selectRecipe(i)">Eliminar</button>
+        </li>
+    </ul>
+    <button class="confirm-button" (click)="deleteRecipe()" *ngIf="recipeToDelete !== null">Confirmar Eliminación</button>
+</div>

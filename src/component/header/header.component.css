@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+  
+  
+  .title {
+    color: orange;
+    font-family: Arial, sans-serif;
+  }
+  
+  .title h1 {
+    margin: 0;
+    line-height: 1.2;
+  }
+  
+  .logo img {
+    width: 120px; 
+    height: auto;
+  }
+  
+  .food-icon img {
+    width: 100px; 
+    height: auto;
+  }
+  

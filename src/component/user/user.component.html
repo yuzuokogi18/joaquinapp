@@ -1,0 +1,23 @@
+<header class="header">
+    <div class="title">
+      <h1>KITCHEN</h1>
+      <h1>RECETS</h1>
+    </div>
+
+    <div class="food-icon">
+        <span class="admin-text">Administrador</span>
+        <img src="assets/libro.png" alt="Food Icon">
+    </div>
+    
+</header>
+<div class="actions">
+    <div class="action-item">
+        <img src="assets/agregar.png" alt="Agregar Receta" />
+        <button [routerLink]="['useragregar']" class="action-button">Agregar Receta</button>
+    </div>
+    <div class="action-item">
+        <img src="assets/editar.png" alt="Editar Receta" />
+        <a [routerLink]="['verreseta']" class="action-button">Ver  Receta</a>
+    </div>
+</div>
+<router-outlet></router-outlet> 

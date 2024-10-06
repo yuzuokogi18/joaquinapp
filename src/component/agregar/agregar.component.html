@@ -1,0 +1,18 @@
+<div class="form-container">
+    <h2>Agregar Receta</h2>
+    <form (submit)="onSubmit($event)">
+        <div>
+            <label for="name">Nombre de la Receta:</label>
+            <input type="text" id="name" (input)="updateName($event)" required>
+        </div>
+        <div>
+            <label for="ingredients">Ingredientes:</label>
+            <textarea id="ingredients" (input)="updateIngredients($event)" required></textarea>
+        </div>
+        <div>
+            <label for="instructions">Instrucciones:</label>
+            <textarea id="instructions" (input)="updateInstructions($event)" required></textarea>
+        </div>
+        <button type="submit">Agregar Receta</button>
+    </form>
+</div>

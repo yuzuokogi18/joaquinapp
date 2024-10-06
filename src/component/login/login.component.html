@@ -1,0 +1,23 @@
+
+<app-header></app-header>
+
+<div class="login-container">
+  <div class="header">
+    <h1>KITCHEN RECETS</h1>
+    <img src="assets/horno.png" alt="chef icon" class="chef-icon">
+  </div>
+  <form class="login-form" (submit)="onSubmit($event)">
+    <div class="form-group">
+      <label for="nombre">NOMBRE</label>
+      <input type="text" id="nombre" placeholder="Nombre" (input)="onUsernameInput($event)" required>
+    </div>
+    <div class="form-group">
+      <label for="password">CONTRASEÑA</label>
+      <input type="password" id="password" placeholder="Contraseña" (input)="onPasswordInput($event)" required>
+    </div>
+    <button type="submit">INGRESAR</button>
+  </form>
+  <div class="admin-label">
+    <h2>BIENVENIDOS</h2>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="visual-container">
+    <ng-container *ngIf="recipes.length > 0; else noRecipes">
+      <ul>
+        <li *ngFor="let recipe of recipes">
+          <h3>{{ recipe.name }}</h3>
+          <p><strong>Ingredientes:</strong> {{ recipe.ingredients }}</p>
+          <p><strong>Instrucciones:</strong> {{ recipe.instructions }}</p>
+        </li>
+      </ul>
+    </ng-container>
+    
+    <ng-template #noRecipes>
+      <p class="no-recipes">No hay recetas guardadas.</p>
+    </ng-template>
+  </div>
+  

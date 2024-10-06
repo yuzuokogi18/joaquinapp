@@ -1,0 +1,73 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    color: orange;
+    font-family: Arial, sans-serif;
+}
+
+.title h1 {
+    margin: 0;
+    line-height: 1.2;
+}
+
+.food-icon {
+    display: flex;
+    align-items: center;
+}
+
+.food-icon img {
+    width: 100px;
+    height: auto;
+}
+
+.admin-text {
+    margin-left: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: black;
+}
+.actions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #e0e0e0; 
+    padding: 180px;
+  }
+  
+  .action-item {
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .action-item img {
+    width: 190px; 
+    height: auto;
+  }
+  
+  .action-item p {
+    margin-top: 10px;
+    font-size: 18px;
+    color: blue;
+  }
+  .action-button {
+    background-color: transparent; 
+    border: 2px solid blue; 
+    color: blue; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.action-button:hover {
+    background-color: blue;
+    color: white; 
+}

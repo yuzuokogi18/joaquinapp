@@ -1,0 +1,14 @@
+<div class="form-container" *ngIf="recipes.length > 0; else noRecipes">
+    <h2>Lista de Recetas</h2>
+    <ul>
+      <li *ngFor="let recipe of recipes">
+        <h3>{{ recipe.name }}</h3>
+        <p><strong>Ingredientes:</strong> {{ recipe.ingredients }}</p>
+        <p><strong>Instrucciones:</strong> {{ recipe.instructions }}</p>
+      </li>
+    </ul>
+  </div>
+
+  <ng-template #noRecipes>
+    <p>No hay recetas disponibles.</p>
+  </ng-template>
