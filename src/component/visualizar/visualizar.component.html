@@ -1,16 +1,13 @@
 <div class="visual-container">
-    <ng-container *ngIf="recipes.length > 0; else noRecipes">
-      <ul>
-        <li *ngFor="let recipe of recipes">
-          <h3>{{ recipe.name }}</h3>
-          <p><strong>Ingredientes:</strong> {{ recipe.ingredients }}</p>
-          <p><strong>Instrucciones:</strong> {{ recipe.instructions }}</p>
-        </li>
-      </ul>
-    </ng-container>
-    
-    <ng-template #noRecipes>
-      <p class="no-recipes">No hay recetas guardadas.</p>
-    </ng-template>
-  </div>
-  
+  <ul *ngIf="planners && planners.length > 0">
+    <li *ngFor="let planner of planners">
+      <h3>{{ planner.name }}</h3>
+      <p><strong>Detalles:</strong> {{ planner.details }}</p>
+      <p><strong>Fecha de Inicio:</strong> {{ planner.start_date }}</p>
+      <p><strong>Fecha de Fin:</strong> {{ planner.end_date }}</p>
+      <p><strong>Hora de Inicio:</strong> {{ planner.start_time }}</p> 
+      <p><strong>Hora de Fin:</strong> {{ planner.end_time }}</p> 
+    </li>
+  </ul>
+  <p *ngIf="planners && planners.length === 0" class="no-recipes">No hay planificadores guardados.</p>
+</div>

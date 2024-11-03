@@ -1,25 +1,31 @@
-import { NgFor, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-
+import { Component, OnInit ,ChangeDetectorRef} from '@angular/core';
+import { PlanificadoresService } from '../service/PlanificadoresService';
+import { CommonModule, NgIf } from '@angular/common'; 
+import { FormsModule } from '@angular/forms'; 
 @Component({
   selector: 'app-visualizar',
   standalone: true,
-  imports: [NgFor,NgIf,RouterOutlet],
+  imports: [CommonModule, FormsModule], 
   templateUrl: './visualizar.component.html',
-  styleUrl: './visualizar.component.css'
+  styleUrls: ['./visualizar.component.css']
 })
-export class VisualizarComponent {
-  recipes: any[] = []; 
+export class VisualizarComponent implements OnInit {
+  planners: any[] = []; 
 
-  ngOnInit(): void {
-    this.loadRecipes();
-  }
-  loadRecipes(): void {
-    const storedRecipes = localStorage.getItem('recipes');
-    if (storedRecipes) {
-      this.recipes = JSON.parse(storedRecipes);
-    }
+  constructor(private planificadoresService: PlanificadoresService, private cd: ChangeDetectorRef) {}
+
+  ngOnInit() {
+    this.loadPlanners();  
   }
 
+  loadPlanners() {
+    this.planificadoresService.getPlanificadores().subscribe((planners) => {
+      console.log('Planners recibidos:', planners);
+      this.planners = planners;  
+      this.cd.detectChanges(); 
+    }, (error) => {
+      console.error('Error al cargar los planificadores:', error);
+    });
+  
+}
 }

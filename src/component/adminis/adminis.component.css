@@ -1,73 +1,73 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 40px;
+  background-color: #000000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.title, .view-planner {
+  flex: 1;
 }
 
 .title {
-    color: orange;
-    font-family: Arial, sans-serif;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  text-align: left;
 }
 
 .title h1 {
-    margin: 0;
-    line-height: 1.2;
+  margin: 0;
+  line-height: 1.2;
 }
 
-.food-icon {
-    display: flex;
-    align-items: center;
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.food-icon img {
-    width: 100px;
-    height: auto;
+.logo img {
+  width: 120px; 
+  height: auto;
 }
 
-.admin-text {
-    margin-left: 10px;
-    font-family: Arial, sans-serif;
-    font-size: 18px;
-    color: black;
+.view-planner {
+  text-align: right;
 }
-.actions {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #e0e0e0; 
-    padding: 180px;
-  }
-  
-  .action-item {
-    text-align: center;
-    font-family: Arial, sans-serif;
-  }
-  
-  .action-item img {
-    width: 190px; 
-    height: auto;
-  }
-  
-  .action-item p {
-    margin-top: 10px;
-    font-size: 18px;
-    color: blue;
-  }
-  .action-button {
-    background-color: transparent;
-    border: 2px solid blue; 
-    color: blue; 
-    padding: 10px 20px; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    font-size: 16px; 
-    transition: background-color 0.3s, color 0.3s; 
+
+.action-button {
+  background-color: transparent;
+  border: 2px solid blue; 
+  color: blue; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 16px; 
+  transition: background-color 0.3s, color 0.3s; 
 }
 
 .action-button:hover {
-    background-color: blue; 
-    color: white; 
+  background-color: blue; 
+  color: white; 
+}
+
+.actions {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #e0e0e0; 
+  padding: 50px;
+}
+
+.action-item {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.action-item img {
+  width: 190px; 
+  height: auto;
 }

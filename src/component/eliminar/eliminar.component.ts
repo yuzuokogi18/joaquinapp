@@ -1,38 +1,38 @@
-import { NgFor, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { PlanificadoresService } from '../service/PlanificadoresService';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-eliminar',
   standalone: true,
-  imports: [NgFor,NgIf],
+  imports: [CommonModule], 
   templateUrl: './eliminar.component.html',
-  styleUrl: './eliminar.component.css'
+  styleUrls: ['./eliminar.component.css']
 })
-export class EliminarComponent {
-  recipes: any[] = [];
-  recipeToDelete: number | null = null; 
+export class EliminarComponent implements OnInit {
+  planners: any[] = []; 
 
-  constructor(private router: Router) { }
+  constructor(private planificadoresService: PlanificadoresService) {}
 
   ngOnInit() {
-    this.loadRecipes(); 
+    this.loadPlanners(); 
   }
 
-  loadRecipes() {
-    this.recipes = JSON.parse(localStorage.getItem('recipes') || '[]');
+  loadPlanners() {
+    this.planificadoresService.getPlanificadores().subscribe((response) => {
+      if (Array.isArray(response)) {
+        this.planners = response;
+      } else {
+        console.error('Error: el dato obtenido no es un array');
+        this.planners = []; 
+      }
+    });
   }
 
-  selectRecipe(index: number) {
-    this.recipeToDelete = index;
-  }
-
-  deleteRecipe() {
-    if (this.recipeToDelete !== null) {
-      this.recipes.splice(this.recipeToDelete, 1);
-      localStorage.setItem('recipes', JSON.stringify(this.recipes));
-      alert('Receta eliminada con éxito!');
-      this.loadRecipes();
-      this.recipeToDelete = null; 
-    }
+  deletePlanner(id: number) {
+    this.planificadoresService.deletePlanificador(id).subscribe(() => {
+      alert('Planificador eliminado con éxito');
+      this.loadPlanners(); 
+    });
   }
 }

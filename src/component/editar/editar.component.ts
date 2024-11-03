@@ -1,61 +1,48 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { PlanificadoresService } from '../service/PlanificadoresService';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-editar',
   standalone: true,
-  imports: [RouterLink,RouterOutlet],
+  imports: [CommonModule, FormsModule],
   templateUrl: './editar.component.html',
-  styleUrl: './editar.component.css'
+  styleUrls: ['./editar.component.css']
 })
-export class EditarComponent {
-  recipe = {
-    name: '',
-    ingredients: '',
-    instructions: ''
-  };
+export class EditarComponent implements OnInit {
+  planners: any[] = [];  
+  plannerToEdit: any = null; 
 
-  recipeIndex: number | null = null;
-
-  constructor(private route: ActivatedRoute) {}
+  constructor(private planificadoresService: PlanificadoresService) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.recipeIndex = +params['index']; 
-      this.loadRecipe();
+    this.loadPlanners();  
+  }
+
+  loadPlanners() {
+    this.planificadoresService.getPlanificadores().subscribe((planners) => {
+      this.planners = planners;
+    }, (error) => {
+      console.error('Error al cargar los planificadores:', error);
     });
   }
 
-  loadRecipe() {
-    const recipes = JSON.parse(localStorage.getItem('recipes') || '[]');
-
-    if (this.recipeIndex !== null && recipes[this.recipeIndex]) {
-      this.recipe = recipes[this.recipeIndex];
-    }
+  editPlanner(planner: any) {
+    this.plannerToEdit = { ...planner }; 
   }
 
-  updateName(event: Event) {
-    const target = event.target as HTMLInputElement;
-    this.recipe.name = target.value;
-  }
-
-  updateIngredients(event: Event) {
-    const target = event.target as HTMLTextAreaElement;
-    this.recipe.ingredients = target.value;
-  }
-
-  updateInstructions(event: Event) {
-    const target = event.target as HTMLTextAreaElement;
-    this.recipe.instructions = target.value;
-  }
-
-  onSubmit(event: Event) {
-    event.preventDefault(); 
-
-    const recipes = JSON.parse(localStorage.getItem('recipes') || '[]');
-    if (this.recipeIndex !== null) {
-      recipes[this.recipeIndex] = this.recipe;
-      localStorage.setItem('recipes', JSON.stringify(recipes));
-      alert('Receta editada con éxito!');
+  onSubmit() {
+    if (this.plannerToEdit.id) {
+      this.planificadoresService.updatePlanificador(this.plannerToEdit.id, this.plannerToEdit).subscribe(() => {
+        alert('Planificador editado con éxito');
+        this.plannerToEdit = null; // Cierra el formulario de edición
+        this.loadPlanners(); // Recarga la lista de planificadores
+      }, error => {
+        console.error('Error al editar planificador:', error);
+        alert('Hubo un error al editar el planificador. Por favor, inténtalo de nuevo.');
+      });
     }
   }
 }
+

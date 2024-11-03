@@ -1,18 +1,52 @@
-<div class="form-container">
-    <h2>Editar Receta</h2>
-    <form (submit)="onSubmit($event)">
+<div class="visual-container">
+    <ul *ngIf="planners && planners.length > 0">
+      <li *ngFor="let planner of planners">
+        <h3>{{ planner.name }}</h3>
+        <p><strong>Detalles:</strong> {{ planner.details }}</p>
+        <p><strong>Fecha de Inicio:</strong> {{ planner.start_date }}</p>
+        <p><strong>Fecha de Fin:</strong> {{ planner.end_date }}</p>
+        <p><strong>Hora de Inicio:</strong> {{ planner.start_time }}</p>
+        <p><strong>Hora de Fin:</strong> {{ planner.end_time }}</p>
+        <button (click)="editPlanner(planner)">Editar</button>
+      </li>
+    </ul>
+    <p *ngIf="planners && planners.length === 0" class="no-recipes">No hay planificadores guardados.</p>
+  
+    <div *ngIf="plannerToEdit" class="form-container">
+      <h2>Editar Planificador</h2>
+      <form (ngSubmit)="onSubmit()">
         <div class="form-group">
-            <label for="name">Nombre de la Receta:</label>
-            <input type="text" id="name" [value]="recipe.name" (input)="updateName($event)" required>
+          <label for="name">Nombre</label>
+          <input id="name" [(ngModel)]="plannerToEdit.name" name="name" required />
         </div>
+  
         <div class="form-group">
-            <label for="ingredients">Ingredientes:</label>
-            <textarea id="ingredients" (input)="updateIngredients($event)" required>{{recipe.ingredients}}</textarea>
+          <label for="details">Detalles</label>
+          <textarea id="details" [(ngModel)]="plannerToEdit.details" name="details" required></textarea>
         </div>
+  
         <div class="form-group">
-            <label for="instructions">Instrucciones:</label>
-            <textarea id="instructions" (input)="updateInstructions($event)" required>{{recipe.instructions}}</textarea>
+          <label for="start_date">Fecha de Inicio</label>
+          <input type="date" id="start_date" [(ngModel)]="plannerToEdit.start_date" name="start_date" required />
         </div>
+  
+        <div class="form-group">
+          <label for="end_date">Fecha de Fin</label>
+          <input type="date" id="end_date" [(ngModel)]="plannerToEdit.end_date" name="end_date" required />
+        </div>
+  
+        <div class="form-group">
+          <label for="start_time">Hora de Inicio</label>
+          <input type="time" id="start_time" [(ngModel)]="plannerToEdit.start_time" name="start_time" required />
+        </div>
+  
+        <div class="form-group">
+          <label for="end_time">Hora de Fin</label>
+          <input type="time" id="end_time" [(ngModel)]="plannerToEdit.end_time" name="end_time" required />
+        </div>
+  
         <button type="submit">Guardar Cambios</button>
-    </form>
-</div>
+      </form>
+    </div>
+  </div>
+  
